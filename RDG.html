@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #b3cde0, #f0e4d7, #f0e4d7); /* Light blue and light horse color */
+            animation: gradient 5s infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1 {
+            margin-bottom: 40px;
+            color: #fff;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #generator {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        #digit {
+            font-size: 60px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #4682B4; /* Light blue */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #87CEFA; /* Light blue */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4682B4; /* Darker light blue */
+        }
+
+        .input-container {
+            margin-bottom: 20px;
+        }
+
+        .input-container input {
+            width: 120px;
+            padding: 10px;
+            margin: 5px;
+            font-size: 18px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            color: #333;
+            background-color: #f5f5dc; /* Light horse color */
+        }
+    </style>
+</head>
+<body>
+
+<h1>Random Number Generator</h1>
+
+<div id="generator">
+    <div class="input-container">
+        <input type="number" id="minValue" placeholder=" Min Num" />
+        <input type="number" id="maxValue" placeholder=" Max Num" />
+    </div>
+    <div id="digit">-</div>
+    <button onclick="generateDigit()">Generate Random Number</button>
+</div>
+
+<script>
+    function generateDigit() {
+        const min = parseInt(document.getElementById('minValue').value);
+        const max = parseInt(document.getElementById('maxValue').value);
+
+        if (isNaN(min) || isNaN(max)) {
+            alert("Please enter valid numbers for both fields.");
+            return;
+        }
+
+        if (max <= min) {
+            alert("Max value should be greater than Min value.");
+            return;
+        }
+
+        const digit = Math.floor(Math.random() * (max - min + 1)) + min;
+        document.getElementById('digit').innerText = digit;
+    }
+</script>
+
+</body>
+</html>
